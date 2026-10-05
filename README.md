@@ -1,5 +1,8 @@
 # NordStatus
 
+> Release build and installation requirements: see [BUILDING.md](BUILDING.md).
+> Older local paths below describe historical test fixtures, not the release build.
+
 Lightweight Paper heartbeat sender for the Nord Fjell Instatus page.
 
 The bundled `heartbeat-url` is empty. After installation, enter your private HTTPS

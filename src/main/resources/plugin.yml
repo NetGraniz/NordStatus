@@ -1,5 +1,5 @@
 name: NordStatus
-version: '1.2.0'
+version: '${project.version}'
 main: com.nordfjell.nordstatus.NordStatusPlugin
 api-version: '26.2'
 author: Nord Fjell
