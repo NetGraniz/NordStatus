@@ -1,0 +1,8 @@
+# Private Instatus Cron / Heartbeat URL. Set your own HTTPS URL after installation.
+# Empty by default: NordStatus stays disabled until configured.
+heartbeat-url: ""
+
+# The trigger runs on the Paper main scheduler; HTTP requests use a background worker.
+interval-seconds: 60
+initial-delay-seconds: 10
+request-timeout-seconds: 10
