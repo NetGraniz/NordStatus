@@ -8,7 +8,7 @@ folder, private configuration, prebuilt old plugin, or machine-specific path is 
 
 From this project's root, run `mvn clean verify`, or on PowerShell run
 `./build.ps1`. The wrapper accepts `-MavenCommand /path/to/mvn`.
-The JAR is `target/NordStatus-1.2.1.jar`.
+The JAR is `target/NordStatus-1.3.0.jar`.
 This project has no existing automated unit suite; a successful build alone is not a functional test.
 
 
@@ -16,7 +16,7 @@ Only plugin metadata resources are filtered for the release version. Configurati
 templates are copied unchanged. API libraries are provided by Paper and
 are not bundled. Builds pin Paper API 26.2 build 129 or the timestamped Velocity
 4.2.1 API snapshot rather than depending on a live server's library directory.
-This release requires JDK 25 and targets Paper 26.2 or Velocity 4.2.1.
+This release requires JDK 25 and supports Paper 26.2 and Folia 26.2 with the same JAR.
 
 The older README and test-support fixtures may describe historical local
 integration environments. BUILDING.md and pom.xml define the release build;

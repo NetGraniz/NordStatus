@@ -3,7 +3,7 @@ package com.nordfjell.nordstatus;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.bukkit.scheduler.BukkitTask;
+import io.papermc.paper.threadedregions.scheduler.ScheduledTask;
 import org.jetbrains.annotations.NotNull;
 
 import java.net.URI;
@@ -19,7 +19,7 @@ public final class NordStatusPlugin extends JavaPlugin {
     private final AtomicBoolean heartbeatInFlight = new AtomicBoolean();
     private ScheduledExecutorService httpExecutor;
     private volatile DnsFailoverHttpsClient httpsClient;
-    private BukkitTask heartbeatTask;
+    private ScheduledTask heartbeatTask;
     private volatile URI heartbeatUri;
     private volatile Duration requestTimeout;
 
@@ -35,7 +35,7 @@ public final class NordStatusPlugin extends JavaPlugin {
             getServer().getPluginManager().disablePlugin(this);
             return;
         }
-        getLogger().info("Paper health heartbeat enabled.");
+        getLogger().info("Server health heartbeat enabled (global scheduler; not a per-region health probe).");
     }
 
     @Override
@@ -73,9 +73,9 @@ public final class NordStatusPlugin extends JavaPlugin {
         httpsClient = new DnsFailoverHttpsClient();
 
         if (heartbeatTask != null) heartbeatTask.cancel();
-        heartbeatTask = getServer().getScheduler().runTaskTimer(
+        heartbeatTask = getServer().getGlobalRegionScheduler().runAtFixedRate(
                 this,
-                () -> sendHeartbeat(),
+                ignored -> sendHeartbeat(),
                 initialDelaySeconds * 20L,
                 intervalSeconds * 20L
         );
@@ -162,11 +162,12 @@ public final class NordStatusPlugin extends JavaPlugin {
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command,
                              @NotNull String label, @NotNull String[] args) {
         if (args.length == 1 && args[0].equalsIgnoreCase("reload")) {
-            if (reloadSettings()) {
-                sender.sendMessage("NordStatus configuration reloaded.");
-            } else {
-                sender.sendMessage("NordStatus configuration is invalid. Check the console.");
-            }
+            getServer().getGlobalRegionScheduler().execute(this,() -> {
+                String message=reloadSettings() ? "NordStatus configuration reloaded." : "NordStatus configuration is invalid. Check the console.";
+                if (sender instanceof org.bukkit.entity.Player player)
+                    player.getScheduler().execute(this,() -> player.sendMessage(message),null,1L);
+                else sender.sendMessage(message);
+            });
             return true;
         }
         if (args.length == 1 && args[0].equalsIgnoreCase("test")) {

@@ -1,9 +1,11 @@
-# NordStatus
+# NordStatus 1.3.0
+
+One release JAR for Paper 26.2 and Folia 26.2: [compatibility notes](FOLIA.md).
 
 > Release build and installation requirements: see [BUILDING.md](BUILDING.md).
 > Older local paths below describe historical test fixtures, not the release build.
 
-Lightweight Paper heartbeat sender for the Nord Fjell Instatus page.
+Lightweight Paper/Folia heartbeat sender for the Nord Fjell Instatus page.
 
 The bundled `heartbeat-url` is empty. After installation, enter your private HTTPS
 heartbeat URL in the server's `plugins/NordStatus/config.yml`, then restart or enable

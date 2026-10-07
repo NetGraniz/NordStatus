@@ -2,6 +2,7 @@ name: NordStatus
 version: '${project.version}'
 main: com.nordfjell.nordstatus.NordStatusPlugin
 api-version: '26.2'
+folia-supported: true
 author: Nord Fjell
 description: Sends a Paper health heartbeat to Instatus.
 
