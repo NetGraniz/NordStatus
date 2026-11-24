@@ -47,3 +47,7 @@ For the default 60-second interval, the original monitor setup used a 60-second 
 ## Build and installation
 
 See [BUILDING.md](BUILDING.md) for release requirements and [FOLIA.md](FOLIA.md) for scheduling notes. Install the release JAR on a stopped server.
+
+## License
+
+Current development on `main` is licensed under [GNU GPL v3.0 only](LICENSE). The latest published release remains available under the MIT License stated on its release page.
