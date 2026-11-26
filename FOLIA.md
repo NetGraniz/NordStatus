@@ -1,6 +1,6 @@
-# Paper / Folia compatibility — 1.3.0
+# Paper / Folia compatibility — 1.3.1
 
-Use `NordStatus-1.3.0.jar` with JDK 25 on Paper 26.2 or Folia 26.2.
+Use `NordStatus-1.3.1.jar` with JDK 25 on Paper 26.2 or Folia 26.2.
 
 Heartbeat timing uses the global scheduler; HTTP and bounded retries remain asynchronous. This is NOT a health check of every region. Keep the private heartbeat URL in installed config, never GitHub. Configuration values and HTTP behavior are unchanged.
 

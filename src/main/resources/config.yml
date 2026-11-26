@@ -2,7 +2,7 @@
 # Empty by default: NordStatus stays disabled until configured.
 heartbeat-url: ""
 
-# The trigger runs on the Paper main scheduler; HTTP requests use a background worker.
+# The trigger runs on the Paper global region scheduler; HTTP requests use a background worker.
 interval-seconds: 60
 initial-delay-seconds: 10
 request-timeout-seconds: 10
